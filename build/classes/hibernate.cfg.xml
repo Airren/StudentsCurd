@@ -1,0 +1,54 @@
+<!-- ~ Hibernate, Relational Persistence for Idiomatic Java ~ ~ License: 
+	GNU Lesser General Public License (LGPL), version 2.1 or later. ~ See the 
+	lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>. -->
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- property 元素用于配置 Hibernate 中的属性 -->
+
+		<!-- <property name="hibernate.connection.username">root</property> <property 
+			name="connection.password">1q2w3e4r5t</property> 连接数据库的驱动 <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property> 
+			<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/StudentCurd;DatabaseName=StudentCurd;useUnicode=true&amp;chatacterEncoding=UTF-8</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property> 
+			<property name="show_sql">true</property> <property name="format_sql">true</property> 
+			<property name="hbm2ddl.auto">update</property> <property name="hibernate.current_session_context_class">thread</property> 
+			<mapping resource="entity/Students.hbm.xml"/> <mapping resource="entity/Users.hbm.xml"/> -->
+
+		<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/StudentsCurd?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">12345678</property>
+
+		<!-- JDBC连接池最大连接数量(使用内置的) -->
+		<property name="connection.pool_size">1</property>
+
+
+		<!-- 指定与Hibernate进行交互的特定SQL方言。 -->
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+
+		<!--C3P0 数据源(数据库连接池) -->
+		<!--<property name="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</property> -->
+
+		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+		<!-- 自动建表 -->
+		<property name="hbm2ddl.auto">create</property>
+
+		<!-- 显示SQL -->
+		<property name="show_sql">true</property>
+
+		<!-- 格式化SQL -->
+		<property name="format_sql">true</property>
+
+		<!-- 注册映射文件 -->
+		<!--<mapping resource="com/luo/beans/Student.hbm.xml"/> -->
+		<mapping resource="entity/Students.hbm.xml" />
+		<mapping resource="entity/Users.hbm.xml" />
+		<!--package参数无法确定怎么用，知道的朋友可留言 -->
+		<mapping package="domain" />
+		<mapping class="domain.Event" />
+
+	</session-factory>
+</hibernate-configuration>
